@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jakub Czucha">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <title>Currency Converter</title>
+</head>
+<body>
+        <div class="preload">
+            <div class="circles-group">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            </div>
+        </div>
+        <main id="root">
+        </main>
+        <p class="copyR">Copyright by <span class="author">Fannoth</span></p>
+
+    <script src="/my-project-js-2/script.js"></script>
+    <script>
+        const preload = document.querySelector('.preload');
+        preload.classList.add('show-preloader');
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                preload.classList.remove('show-preloader');
+            }, 3500);
+        });
+    </script>
+</body>
+</html>

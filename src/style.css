@@ -1,0 +1,132 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #10131a;
+
+}
+main {
+    width: 600px;
+    height: 300px;
+    border: solid 1px white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.upperSection {
+    width: 300px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+
+}
+.CurrencyText {
+    font-size: 24px;
+    padding: 10px;
+    border: solid 1px white;
+    border-radius: 10px;
+    color: white;
+}
+input {
+    background-color: #10131a;
+    border: none;
+    border-bottom: solid 1px white;
+    color: white;
+    margin-right: 10px;
+}
+select {
+    background-color: #10131a;
+    border: none;
+    border-bottom: solid 1px white;
+    color: white;
+    margin-right: 10px;
+}
+button {
+    background-color: #10131a;
+    border: none;
+    border-bottom: solid 1px white;
+    color: white;
+}
+#spanC {
+    color: white;
+    font-size: 20px;
+}
+.logo {
+    padding-right: 30px;
+}
+.logoPng {
+    height: 46px;
+    width: 46px;
+    border-radius: 5px;
+}
+.lowerSection {
+    padding: 20px;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.preload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 10000;
+    visibility: hidden;
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background-color: #10131a;
+    transition: opacity 400ms ease-in-out, visibility 0s 400ms;
+}
+
+.show-preloader {
+    visibility: visible;
+    opacity: 1;
+}
+
+.circle {
+    background-color: #f9dc97;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    animation: bounce-circles 0.7s infinite ease-in-out;
+}
+
+.preload .circle:nth-child(1) {
+     animation-delay: -0.6s;
+}
+
+.preload .circle:nth-child(2) {
+     animation-delay: -0.5s;
+}
+
+.preload .circle:nth-child(3) {
+     animation-delay: -0.4s;
+}
+
+.preload .circle:nth-child(4) {
+    animation-delay: -0.3s;
+}
+
+@keyframes bounce-circles {
+    0%, 40%, 100% {
+ 		transform: translateY(-10px);
+    } 20% {
+ 		transform: translateY(-20px);
+    }
+}
+.copyR{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: white;
+}
+.author {
+    color: teal;
+}
