@@ -16,13 +16,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Simple home-budget
 - It will not be responsive
 
-## Tehnologies
+## Technologies
 
 Project is created with:
-
-- HTML
+- React
 - CSS
-- Vanilla JS
 ## Available Scripts
 
 In the project directory, you can run:
