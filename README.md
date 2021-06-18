@@ -19,8 +19,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Technologies
 
 Project is created with:
+
 - React
 - CSS
+
 ## Available Scripts
 
 In the project directory, you can run:
