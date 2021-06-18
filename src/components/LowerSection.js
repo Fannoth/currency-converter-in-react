@@ -1,63 +1,70 @@
 import React from "react";
-import "../reset.css";
 import "../style.css";
-
+import Select from "./Select";
+import Button from "./Button";
+import Input from "./Input";
 class LowerSection extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      rates: {
+        NULL: "0",
+        EUR: 0,
+        USD: 0,
+        CHF: 0,
+      },
+      currency: "NULL",
+      amountExchange: 0,
+      amount: 0,
+    };
+  }
+
   componentDidMount() {
-    const url = "https://api.nbp.pl/api/exchangerates/tables/c/";
-    fetch(url)
+    fetch("https://api.nbp.pl/api/exchangerates/tables/c/")
       .then((data) => data.json())
       .then((data) => {
-        let currency = data[0];
-        const selectDOM = document.getElementById("selectC");
-        const buttonDOM = document.getElementById("buttonC");
-        const spanDOM = document.getElementById("spanC");
-        const inputDOM = document.getElementById("inputC");
-        let money = 0;
-        let selectedCurrency = 0;
-        const arrayCur = currency.rates.filter(
-          (record) =>
-            record.code === "USD" ||
-            record.code === "EUR" ||
-            record.code === "CHF"
-        );
-        for (let record of arrayCur) {
-          selectDOM.innerHTML += `<option value=${record.bid}>${record.code}</option>`;
-          let bid = record.bid;
-          selectDOM.addEventListener("change", (event) => {
-            selectedCurrency = `${event.target.value}`;
-          });
-          inputDOM.addEventListener("change", (event) => {
-            money = inputDOM.value;
-          });
-        }
-        buttonDOM.addEventListener("click", function () {
-          let result = (money * selectedCurrency).toFixed(2);
-          if (money == 0) {
-            spanDOM.textContent =
-              "Prosimy podać ilość pieniędzy do przeliczenia";
-          } else if (selectedCurrency == 0) {
-            spanDOM.textContent = "Prosimy wybrać walutę";
-          } else {
-            spanDOM.textContent = "To " + result + "zł";
-          }
-        });
-      });
+        this.setState((state) => ({
+          rates: {
+            USD: data[0].rates[0].ask,
+            EUR: data[0].rates[3].ask,
+            CHF: data[0].rates[5].ask,
+          },
+        }));
+      })
+      .catch((error) => console.log(error));
   }
+
+  getCurrency = (currency) => {
+    this.setState({ currency });
+  };
+
+  getAmount = (amount) => {
+    this.setState({ amount });
+  };
+
+  ConverterFn = () => {
+    if (this.state.currency !== "NULL") {
+      this.setState({
+        amountExchange:
+          this.state.rates[this.state.currency] * this.state.amount,
+      });
+    }
+  };
 
   render() {
     return (
       <>
         <div className="lowerSection">
-          <input id="inputC" type="number" placeholder="Wpisz kwote"></input>
-          <select id="selectC" className="CurrencySelect">
-            <option value="0">Wybierz walute</option>
-          </select>
-          <button id="buttonC" className="Converter">
-            Przelicz
-          </button>
+          <Input getAmount={this.getAmount} />
+          <Select getCurrency={this.getCurrency} />
+          <Button onBtnClick={this.ConverterFn} />
         </div>
-        <span id="spanC"></span>
+        <span id="spanC">
+          {this.state.currency === "NULL"
+            ? "Wybierz walute"
+            : `To ${this.state.amountExchange.toFixed(2)} PLN`}
+        </span>
       </>
     );
   }

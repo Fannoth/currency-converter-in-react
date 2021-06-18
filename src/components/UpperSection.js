@@ -1,7 +1,6 @@
 import React from "react";
-import "../reset.css";
 import "../style.css";
-import logo from "../zdj1.png";
+import logo from "../logo.png";
 
 const UpperSection = () => {
   return (
