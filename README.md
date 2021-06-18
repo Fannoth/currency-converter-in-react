@@ -1,7 +1,28 @@
-# Getting Started with Create React App
+# Currency Converter by Fannoth
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# [Live server](https://fannoth-cc.netlify.app//)
+
+## Table of contest
+
+- [General info](#general-info)
+- [Technologies](#technologies)
+- [Live Server](#live-server)
+- [Available Scripts](#available-scripts)
+
+## General info
+
+- Simple home-budget
+- It will not be responsive
+
+## Tehnologies
+
+Project is created with:
+
+- HTML
+- CSS
+- Vanilla JS
 ## Available Scripts
 
 In the project directory, you can run:
