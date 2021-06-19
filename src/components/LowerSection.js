@@ -49,6 +49,8 @@ class LowerSection extends React.Component {
         amountExchange:
           this.state.rates[this.state.currency] * this.state.amount,
       });
+    } else {
+      this.setState({ amountExchange: 0 });
     }
   };
 
@@ -58,7 +60,10 @@ class LowerSection extends React.Component {
         <div className="lowerSection">
           <Input getAmount={this.getAmount} />
           <Select getCurrency={this.getCurrency} />
-          <Button onBtnClick={this.ConverterFn} />
+          <Button
+            onBtnClick={this.ConverterFn}
+            disabled={this.state.currency === "NULL" ? true : false}
+          />
         </div>
         <span id="spanC">
           {this.state.currency === "NULL"
