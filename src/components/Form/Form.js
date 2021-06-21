@@ -1,20 +1,18 @@
 import React from "react";
-import "../style.css";
-import Select from "./Select";
-import Button from "./Button";
-import Input from "./Input";
-class LowerSection extends React.Component {
+import Select from "./Select/Select";
+import Button from "./Button/Button";
+import Input from "./Input/Input";
+class Form extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       rates: {
-        NULL: "0",
         EUR: 0,
         USD: 0,
         CHF: 0,
       },
-      currency: "NULL",
+      currency: null,
       amountExchange: 0,
       amount: 0,
     };
@@ -24,7 +22,7 @@ class LowerSection extends React.Component {
     fetch("https://api.nbp.pl/api/exchangerates/tables/c/")
       .then((data) => data.json())
       .then((data) => {
-        this.setState((state) => ({
+        this.setState(() => ({
           rates: {
             USD: data[0].rates[0].ask,
             EUR: data[0].rates[3].ask,
@@ -43,15 +41,12 @@ class LowerSection extends React.Component {
     this.setState({ amount });
   };
 
-  ConverterFn = () => {
-    if (this.state.currency !== "NULL") {
-      this.setState({
-        amountExchange:
-          this.state.rates[this.state.currency] * this.state.amount,
-      });
-    } else {
-      this.setState({ amountExchange: 0 });
-    }
+  converterFn = () => {
+    !!this.state.currency
+      ? this.setState((state) => ({
+          amountExchange: state.rates[state.currency] * state.amount,
+        }))
+      : this.setState({ amountExchange: 0 });
   };
 
   render() {
@@ -61,17 +56,18 @@ class LowerSection extends React.Component {
           <Input getAmount={this.getAmount} />
           <Select getCurrency={this.getCurrency} />
           <Button
-            onBtnClick={this.ConverterFn}
-            disabled={this.state.currency === "NULL" ? true : false}
+            converterFn={this.converterFn}
+            disabled={!!this.state.currency}
           />
         </div>
+
         <span id="spanC">
-          {this.state.currency === "NULL"
-            ? "Wybierz walute"
-            : `To ${this.state.amountExchange.toFixed(2)} PLN`}
+          {!!this.state.currency
+            ? `To ${this.state.amountExchange.toFixed(2)} PLN`
+            : "Wybierz walute"}
         </span>
       </>
     );
   }
 }
-export default LowerSection;
+export default Form;

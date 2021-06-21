@@ -1,15 +1,15 @@
 import React from "react";
 import "./style.css";
 import "./reset.css";
-import UpperSection from "./components/UpperSection";
-import LowerSection from "./components/LowerSection";
-import CopyRight from "./components/CopyRight";
+import LogoAndDescription from "./components/LogoAndDescription/LogoAndDescription";
+import Form from "./components/Form/Form";
+import CopyRight from "./components/CopyRight/CopyRight";
 
 function App() {
   return (
     <>
-      <UpperSection></UpperSection>
-      <LowerSection></LowerSection>
+      <LogoAndDescription></LogoAndDescription>
+      <Form></Form>
       <CopyRight></CopyRight>
     </>
   );

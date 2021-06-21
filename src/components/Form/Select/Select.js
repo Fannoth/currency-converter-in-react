@@ -7,10 +7,12 @@ function Select({ getCurrency }) {
       className="CurrencySelect"
       onChange={(e) => getCurrency(e.target.value)}
     >
-      <option value="NULL">Wybierz walute</option>
-      <option value="EUR">EUR</option>
-      <option value="USD">USD</option>
-      <option value="CHF">CHF</option>
+      <option>Wybierz walute</option>
+      <optgroup label="Rates">
+        <option value="EUR">EUR</option>
+        <option value="USD">USD</option>
+        <option value="CHF">CHF</option>
+      </optgroup>
     </select>
   );
 }
