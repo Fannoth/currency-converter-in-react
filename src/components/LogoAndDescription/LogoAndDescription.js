@@ -4,12 +4,12 @@ import logo from "./logo.png";
 const UpperSection = () => {
   return (
     <>
-      <div class="upperSection">
-        <div class="logo">
-          <img src={logo} alt="logo" class="logoPng"></img>
+      <div className="upperSection">
+        <div className="logo">
+          <img src={logo} alt="logo" className="logoPng"></img>
         </div>
-        <div class="TextBox">
-          <p class="CurrencyText">Currency Converter</p>
+        <div className="TextBox">
+          <p className="CurrencyText">Currency Converter</p>
         </div>
       </div>
     </>

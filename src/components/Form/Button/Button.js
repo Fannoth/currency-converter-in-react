@@ -1,8 +1,8 @@
 import React from "react";
 
-function Button({ onBtnClick }) {
+function Button({ converterFn  }) {
   return (
-    <button id="buttonC" className="Converter" onClick={onBtnClick}>
+    <button id="buttonC" className="Converter" onClick={converterFn}>
       Przelicz
     </button>
   );

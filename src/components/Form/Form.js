@@ -12,7 +12,7 @@ class Form extends React.Component {
         USD: 0,
         CHF: 0,
       },
-      currency: "EUR",
+      currency: null,
       amountExchange: 0,
       amount: 0,
     };
@@ -22,7 +22,7 @@ class Form extends React.Component {
     fetch("https://api.nbp.pl/api/exchangerates/tables/c/")
       .then((data) => data.json())
       .then((data) => {
-        this.setState((state) => ({
+        this.setState(() => ({
           rates: {
             USD: data[0].rates[0].ask,
             EUR: data[0].rates[3].ask,
@@ -42,9 +42,11 @@ class Form extends React.Component {
   };
 
   converterFn = () => {
-    this.setState({
-      amountExchange: this.state.rates[this.state.currency] * this.state.amount,
-    });
+    !!this.state.currency
+      ? this.setState((state) => ({
+          amountExchange: state.rates[state.currency] * state.amount,
+        }))
+      : this.setState({ amountExchange: 0 });
   };
 
   render() {
@@ -53,10 +55,17 @@ class Form extends React.Component {
         <div className="lowerSection">
           <Input getAmount={this.getAmount} />
           <Select getCurrency={this.getCurrency} />
-          <Button onBtnClick={this.converterFn} />
+          <Button
+            converterFn={this.converterFn}
+            disabled={!!this.state.currency}
+          />
         </div>
 
-        <span id="spanC">To {this.state.amountExchange.toFixed(2)} PLN</span>
+        <span id="spanC">
+          {!!this.state.currency
+            ? `To ${this.state.amountExchange.toFixed(2)} PLN`
+            : "Wybierz walute"}
+        </span>
       </>
     );
   }
